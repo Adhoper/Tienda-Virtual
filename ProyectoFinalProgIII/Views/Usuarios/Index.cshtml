@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ProyectoFinalProgIII.Data;
+@inject SignInManager<Usuarios> SignInManager
+@inject UserManager<Usuarios> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+
+
+
+}
+else
+{
+
+}
+
+
+

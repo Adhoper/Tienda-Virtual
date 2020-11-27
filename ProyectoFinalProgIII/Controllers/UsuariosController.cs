@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ProyectoFinalProgIII.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuariosController : Controller
     {
         public IActionResult Index()
         {
