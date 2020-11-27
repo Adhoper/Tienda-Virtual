@@ -9,11 +9,11 @@ using ProyectoFinalProgIII.Data;
 
 namespace ProyectoFinalProgIII.Controllers
 {
-    public class FacturacionsController : Controller
+    public class FacturacionController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public FacturacionsController(ApplicationDbContext context)
+        public FacturacionController(ApplicationDbContext context)
         {
             _context = context;
         }
