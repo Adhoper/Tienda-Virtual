@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProyectoFinalProgIII.Migrations
 {
-    public partial class InitialFactura : Migration
+    public partial class FacturaInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,7 +47,10 @@ namespace ProyectoFinalProgIII.Migrations
                     TipoFactura = table.Column<string>(nullable: true),
                     Cantidad = table.Column<string>(nullable: true),
                     Itbis = table.Column<string>(nullable: true),
-                    ClienteId = table.Column<Guid>(nullable: false)
+                    ClienteId = table.Column<Guid>(nullable: false),
+                    UsuarioId = table.Column<Guid>(nullable: false),
+                    ProductosId = table.Column<Guid>(nullable: false),
+                    ServiciosId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,7 +65,8 @@ namespace ProyectoFinalProgIII.Migrations
                     NombreP = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     Valor = table.Column<string>(nullable: true),
-                    Cantidad = table.Column<string>(nullable: true)
+                    Cantidad = table.Column<string>(nullable: true),
+                    CantVendidos = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -76,7 +80,8 @@ namespace ProyectoFinalProgIII.Migrations
                     ServiciosId = table.Column<Guid>(nullable: false),
                     NombreS = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
-                    Valor = table.Column<string>(nullable: true)
+                    Valor = table.Column<string>(nullable: true),
+                    CantVendidos = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

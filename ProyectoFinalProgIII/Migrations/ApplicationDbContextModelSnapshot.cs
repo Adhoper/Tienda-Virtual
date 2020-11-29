@@ -15,7 +15,7 @@ namespace ProyectoFinalProgIII.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -201,8 +201,17 @@ namespace ProyectoFinalProgIII.Migrations
                     b.Property<string>("Itbis")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ProductosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ServiciosId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("TipoFactura")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FacturacionId");
 
@@ -214,6 +223,9 @@ namespace ProyectoFinalProgIII.Migrations
                     b.Property<Guid>("ProductosId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CantVendidos")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Cantidad")
                         .HasColumnType("nvarchar(max)");
@@ -237,6 +249,9 @@ namespace ProyectoFinalProgIII.Migrations
                     b.Property<Guid>("ServiciosId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CantVendidos")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
