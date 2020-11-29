@@ -76,6 +76,11 @@ namespace ProyectoFinalProgIII.Data
         public string Itbis { get; set; }
 
         public Guid ClienteId { get; set; }
+
+        public Guid UsuarioId { get; set; }
+
+        public Guid ProductosId { get; set; }
+        public Guid ServiciosId { get; set; }
     }
 
     public class Productos
@@ -87,6 +92,8 @@ namespace ProyectoFinalProgIII.Data
         public string Valor { get; set; }
         public string Cantidad { get; set; }
 
+        public string CantVendidos { get; set; }
+
     }
 
     public class Servicios
@@ -96,5 +103,7 @@ namespace ProyectoFinalProgIII.Data
         public string NombreS { get; set; }
         public string Descripcion { get; set; }
         public string Valor { get; set; }
+
+        public string CantVendidos { get; set; }
     }
 }
