@@ -1,21 +1,20 @@
-﻿@model ProyectoFinalProgIII.Data.Productos
+﻿@model ProyectoFinalProgIII.Data.Servicios
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
 }
 
-<h1>Eliminar</h1>
+<h1>Detalles</h1>
 
-<h3>Estas seguro que quieres borrar este producto?</h3>
 <div>
-    <h4>Productos</h4>
+    <h4>Servicios</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreP)
+            @Html.DisplayNameFor(model => model.NombreS)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreP)
+            @Html.DisplayFor(model => model.NombreS)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -30,22 +29,14 @@
             @Html.DisplayFor(model => model.Valor)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cantidad)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CantVendidos)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CantVendidos)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ProductosId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver</a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ServiciosId">Editar</a> |
+    <a asp-action="Index">Volver</a>
 </div>
