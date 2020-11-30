@@ -2,18 +2,56 @@
 @using ProyectoFinalProgIII.Data;
 @inject SignInManager<Usuarios> SignInManager
 @inject UserManager<Usuarios> UserManager
+@model IEnumerable<ProyectoFinalProgIII.Data.Facturacion>
 
 @{
     ViewData["Title"] = "Index";
+
+    var factura = ViewBag.fact;
 }
 
-<h1>Index</h1>
 
 @if (SignInManager.IsSignedIn(User))
 {
-
-
-
+    <h1>Index</h1>
+    
+    <table class="table table-light table-hover table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoFactura)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Itbis)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cantidad)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(factura => item.TipoFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Itbis)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ProductosId">Editar</a> |
+                        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.ProductosId">Detalles</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductosId">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 }
 else

@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ProyectoFinalProgIII.Data;
 
 namespace ProyectoFinalProgIII.Controllers
 {
     public class UsuariosController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext bd;
+
+        public UsuariosController(ApplicationDbContext context)
         {
-            return View();
+            bd = context;
+        }
+
+        public IActionResult Index(Guid id)
+        {
+
+            var facturacion = from fact in bd.Facturacion 
+                               where fact.UsuarioId == id
+                               select fact;
+
+            return View(facturacion);
         }
     }
 }

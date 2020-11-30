@@ -18,13 +18,13 @@ namespace ProyectoFinalProgIII.Controllers
             _context = context;
         }
 
-        // GET: Facturacions
+        // GET: Facturacion
         public async Task<IActionResult> Index()
         {
             return View(await _context.Facturacion.ToListAsync());
         }
 
-        // GET: Facturacions/Details/5
+        // GET: Facturacion/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -42,18 +42,18 @@ namespace ProyectoFinalProgIII.Controllers
             return View(facturacion);
         }
 
-        // GET: Facturacions/Create
+        // GET: Facturacion/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Facturacions/Create
+        // POST: Facturacion/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FacturacionId,TipoFactura,Cantidad,Itbis,ClienteId")] Facturacion facturacion)
+        public async Task<IActionResult> Create([Bind("FacturacionId,TipoFactura,Cantidad,Itbis,ClienteId,UsuarioId,ProductosId,ServiciosId")] Facturacion facturacion)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace ProyectoFinalProgIII.Controllers
             return View(facturacion);
         }
 
-        // GET: Facturacions/Edit/5
+        // GET: Facturacion/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -81,12 +81,12 @@ namespace ProyectoFinalProgIII.Controllers
             return View(facturacion);
         }
 
-        // POST: Facturacions/Edit/5
+        // POST: Facturacion/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("FacturacionId,TipoFactura,Cantidad,Itbis,ClienteId")] Facturacion facturacion)
+        public async Task<IActionResult> Edit(Guid id, [Bind("FacturacionId,TipoFactura,Cantidad,Itbis,ClienteId,UsuarioId,ProductosId,ServiciosId")] Facturacion facturacion)
         {
             if (id != facturacion.FacturacionId)
             {
@@ -116,7 +116,7 @@ namespace ProyectoFinalProgIII.Controllers
             return View(facturacion);
         }
 
-        // GET: Facturacions/Delete/5
+        // GET: Facturacion/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace ProyectoFinalProgIII.Controllers
             return View(facturacion);
         }
 
-        // POST: Facturacions/Delete/5
+        // POST: Facturacion/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

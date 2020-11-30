@@ -1,61 +1,72 @@
 ﻿@model IEnumerable<ProyectoFinalProgIII.Data.Productos>
+@using Microsoft.AspNetCore.Identity
+@using ProyectoFinalProgIII.Data;
+@inject SignInManager<Usuarios> SignInManager
+@inject UserManager<Usuarios> UserManager
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-<h1 class="text-center">Productos</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Index</h1>
+    <h1 class="text-center">Productos</h1>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create">Crear nuevo producto</a>
-</p>
-<table class="table table-light table-hover table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cantidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantVendidos)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Crear nuevo producto</a>
+    </p>
+    <table class="table table-light table-hover table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreP)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Valor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cantidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CantVendidos)
-                </td>
-                <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ProductosId">Editar</a> |
-                    <a class = "btn btn-success" asp-action="Details" asp-route-id="@item.ProductosId">Detalles</a> |
-                    <a class ="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductosId">Eliminar</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreP)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cantidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CantVendidos)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CantVendidos)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ProductosId">Editar</a> |
+                        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.ProductosId">Detalles</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductosId">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+
+}
