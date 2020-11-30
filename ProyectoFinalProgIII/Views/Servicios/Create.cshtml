@@ -1,5 +1,4 @@
-﻿@model ProyectoFinalProgIII.Data.Productos
-
+﻿@model ProyectoFinalProgIII.Data.Servicios
 
 @{
     ViewData["Title"] = "Create";
@@ -7,16 +6,16 @@
 
 <h1>Crear</h1>
 
-<h4>Productos</h4>
+<h4>Servicios</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NombreP" class="control-label">Nombre</label>
-                <input asp-for="NombreP" class="form-control" />
-                <span asp-validation-for="NombreP" class="text-danger"></span>
+                <label asp-for="NombreS" class="control-label">Nombre</label>
+                <input asp-for="NombreS" class="form-control" />
+                <span asp-validation-for="NombreS" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Descripcion" class="control-label"></label>
@@ -27,11 +26,6 @@
                 <label asp-for="Valor" class="control-label"></label>
                 <input asp-for="Valor" class="form-control" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cantidad" class="control-label"></label>
-                <input asp-for="Cantidad" class="form-control" />
-                <span asp-validation-for="Cantidad" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CantVendidos" class="control-label"></label>
