@@ -90,11 +90,12 @@ namespace ProyectoFinalProgIII.Controllers
         {
             if (ModelState.IsValid)
             {
-                facturacion.FacturacionId = Guid.NewGuid();
-                facturacion.UsuarioId = UtilityModel.UserId;
-                _context.Add(facturacion);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                    facturacion.FacturacionId = Guid.NewGuid();
+                    facturacion.UsuarioId = UtilityModel.UserId;
+                    _context.Add(facturacion);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+    
             }
             return View(facturacion);
         }
