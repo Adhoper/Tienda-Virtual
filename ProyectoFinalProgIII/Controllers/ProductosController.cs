@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalProgIII.Data;
-using ProyectoFinalProgIII.Models;
 
 namespace ProyectoFinalProgIII.Controllers
 {
@@ -61,7 +60,6 @@ namespace ProyectoFinalProgIII.Controllers
             if (ModelState.IsValid)
             {
                 productos.ProductosId = Guid.NewGuid();
-                productos.UId = UtilityModel.UserId;
                 _context.Add(productos);
                  await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

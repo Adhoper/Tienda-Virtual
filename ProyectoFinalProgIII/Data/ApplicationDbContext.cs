@@ -54,7 +54,6 @@ namespace ProyectoFinalProgIII.Data
     {
         [Key]
         public Guid ClienteId { get; set; }
-        public Guid UId { get; set; }
         public string Nombre { get; set; }
         public string RNC { get; set; }
         public string Direccion { get; set; }
@@ -62,6 +61,9 @@ namespace ProyectoFinalProgIII.Data
         public string Longitud { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
+
+        public DateTime FechaNacimiento { get; set; }
+        public string CantCompras { get; set; }
 
     }
 
@@ -86,8 +88,6 @@ namespace ProyectoFinalProgIII.Data
     public class Productos
     {
         public Guid ProductosId { get; set; }
-
-        public Guid UId { get; set; }
         public string NombreP { get; set; }
         public string Descripcion { get; set; }
         public string Valor { get; set; }
@@ -100,8 +100,6 @@ namespace ProyectoFinalProgIII.Data
     public class Servicios
     {
         public Guid ServiciosId { get; set; }
-
-        public Guid UId { get; set; }
 
         public string NombreS { get; set; }
         public string Descripcion { get; set; }

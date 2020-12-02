@@ -12,6 +12,12 @@
     <Compile Remove="Migrations\20201127182548_InitialFactura.Designer.cs" />
     <Compile Remove="Migrations\20201129190841_FacturaInicial.cs" />
     <Compile Remove="Migrations\20201129190841_FacturaInicial.Designer.cs" />
+    <Compile Remove="Migrations\20201202025731_InitialFacturas.cs" />
+    <Compile Remove="Migrations\20201202025731_InitialFacturas.Designer.cs" />
+    <Compile Remove="Migrations\20201202150001_InicialFactura.cs" />
+    <Compile Remove="Migrations\20201202150001_InicialFactura.Designer.cs" />
+    <Compile Remove="Migrations\20201202150215_FacturasCreate.cs" />
+    <Compile Remove="Migrations\20201202150215_FacturasCreate.Designer.cs" />
   </ItemGroup>
 
 

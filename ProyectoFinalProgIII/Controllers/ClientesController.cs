@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalProgIII.Data;
-using ProyectoFinalProgIII.Models;
 
 namespace ProyectoFinalProgIII.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -59,7 +60,6 @@ namespace ProyectoFinalProgIII.Controllers
             if (ModelState.IsValid)
             {
                 clientes.ClienteId = Guid.NewGuid();
-                clientes.UId = UtilityModel.UserId;
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

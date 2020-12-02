@@ -10,8 +10,8 @@ using ProyectoFinalProgIII.Data;
 namespace ProyectoFinalProgIII.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201202025731_InitialFacturas")]
-    partial class InitialFacturas
+    [Migration("20201202153249_FactCreate")]
+    partial class FactCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -162,11 +162,17 @@ namespace ProyectoFinalProgIII.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CantCompras")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Correo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Latitud")
                         .HasColumnType("nvarchar(max)");
@@ -182,9 +188,6 @@ namespace ProyectoFinalProgIII.Migrations
 
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ClienteId");
 
@@ -241,9 +244,6 @@ namespace ProyectoFinalProgIII.Migrations
                     b.Property<string>("NombreP")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Valor")
                         .HasColumnType("nvarchar(max)");
 
@@ -266,9 +266,6 @@ namespace ProyectoFinalProgIII.Migrations
 
                     b.Property<string>("NombreS")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Valor")
                         .HasColumnType("nvarchar(max)");
