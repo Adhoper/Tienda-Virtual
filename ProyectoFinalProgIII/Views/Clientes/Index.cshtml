@@ -77,9 +77,11 @@
                     </div>
                 </td>
                 <td>
-                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
-                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
+                    <div class="btn-group">
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> 
+                        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.ClienteId">Details</a> 
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
+                    </div>
                 </td>
             </tr>
         }

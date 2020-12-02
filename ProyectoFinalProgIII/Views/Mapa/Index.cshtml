@@ -1,0 +1,76 @@
+﻿@using ProyectoFinalProgIII.Data
+@using Newtonsoft.Json
+@model IEnumerable<ProyectoFinalProgIII.Data.Clientes>
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+@{
+
+
+    var cli = JsonConvert.SerializeObject(Model, Formatting.Indented,
+    new JsonSerializerSettings()
+    {
+        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    }
+);
+}
+    <div class="text-center">
+        <h1>Bienvenido al Mapa</h1>
+        <p>Este mapa muestra la direccion e informacion de todos los Clientes Registrados</p>
+    </div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa </title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <style>
+        #map {
+            margin:auto;
+            height: 500px;
+            width: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"> </div>
+
+
+    <script>
+
+        const options = {
+            center: [18.66, -69.80],
+            zoom: 13
+        }
+        let map = L.map('map', options)
+
+        let tileLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png')
+        map.addLayer(tileLayer)
+
+        var datosAcc = @Html.Raw(cli);
+
+        for (let a of datosAcc) {
+            
+
+
+            var marker = L.marker([a.Latitud, a.Longitud]).addTo(map).bindPopup('<strong>Nombre: </strong>' + a.Nombre + '<br><strong>RNC/Cedula: </strong>' + a.RNC + '<br><strong>Direccion:</strong> ' + a.Direccion +
+                '<br><strong>Telefono: </strong>' + a.Telefono +
+                '<br><strong>Correo: </strong>' + a.Correo +
+                '<br><strong>Fecha Nac.: </strong>' + a.FechaNacimiento + '').openPopup();
+
+        }
+
+
+    </script>
+    <center>
+        <input style="margin-top:10px;" type="button" class="btn btn-warning" onclick="location.href ='/'" value="Volver" />
+    </center>
+</body>
+</html>
+

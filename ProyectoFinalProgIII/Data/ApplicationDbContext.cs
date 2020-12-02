@@ -61,7 +61,8 @@ namespace ProyectoFinalProgIII.Data
         public string Longitud { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
-
+        [Display(Name = "Fecha de Nacimiento")]
+        [DataType(DataType.Date)]
         public DateTime FechaNacimiento { get; set; }
         public string CantCompras { get; set; }
 
