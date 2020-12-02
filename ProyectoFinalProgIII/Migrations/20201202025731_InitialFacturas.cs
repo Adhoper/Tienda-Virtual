@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProyectoFinalProgIII.Migrations
 {
-    public partial class FacturaInicial : Migration
+    public partial class InitialFacturas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,6 +26,7 @@ namespace ProyectoFinalProgIII.Migrations
                 columns: table => new
                 {
                     ClienteId = table.Column<Guid>(nullable: false),
+                    UId = table.Column<Guid>(nullable: false),
                     Nombre = table.Column<string>(nullable: true),
                     RNC = table.Column<string>(nullable: true),
                     Direccion = table.Column<string>(nullable: true),
@@ -62,6 +63,7 @@ namespace ProyectoFinalProgIII.Migrations
                 columns: table => new
                 {
                     ProductosId = table.Column<Guid>(nullable: false),
+                    UId = table.Column<Guid>(nullable: false),
                     NombreP = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     Valor = table.Column<string>(nullable: true),
@@ -78,6 +80,7 @@ namespace ProyectoFinalProgIII.Migrations
                 columns: table => new
                 {
                     ServiciosId = table.Column<Guid>(nullable: false),
+                    UId = table.Column<Guid>(nullable: false),
                     NombreS = table.Column<string>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     Valor = table.Column<string>(nullable: true),

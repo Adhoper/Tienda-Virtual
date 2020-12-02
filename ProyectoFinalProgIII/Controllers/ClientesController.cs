@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalProgIII.Data;
+using ProyectoFinalProgIII.Models;
 
 namespace ProyectoFinalProgIII.Controllers
 {
@@ -58,6 +59,7 @@ namespace ProyectoFinalProgIII.Controllers
             if (ModelState.IsValid)
             {
                 clientes.ClienteId = Guid.NewGuid();
+                clientes.UId = UtilityModel.UserId;
                 _context.Add(clientes);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

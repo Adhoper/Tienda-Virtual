@@ -10,6 +10,8 @@
     <Compile Remove="Migrations\20201127182219_FacturaInitial.Designer.cs" />
     <Compile Remove="Migrations\20201127182548_InitialFactura.cs" />
     <Compile Remove="Migrations\20201127182548_InitialFactura.Designer.cs" />
+    <Compile Remove="Migrations\20201129190841_FacturaInicial.cs" />
+    <Compile Remove="Migrations\20201129190841_FacturaInicial.Designer.cs" />
   </ItemGroup>
 
 

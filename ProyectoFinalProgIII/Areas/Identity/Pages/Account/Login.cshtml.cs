@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ProyectoFinalProgIII.Data;
+using ProyectoFinalProgIII.Models;
 
 namespace ProyectoFinalProgIII.Areas.Identity.Pages.Account
 {
@@ -21,14 +22,18 @@ namespace ProyectoFinalProgIII.Areas.Identity.Pages.Account
         private readonly UserManager<Usuarios> _userManager;
         private readonly SignInManager<Usuarios> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ApplicationDbContext _context;
+
 
         public LoginModel(SignInManager<Usuarios> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<Usuarios> userManager)
+            UserManager<Usuarios> userManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
         }
 
         [BindProperty]
@@ -84,6 +89,9 @@ namespace ProyectoFinalProgIII.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    var user = _context.Usuarios.Where(u => u.UserName.Equals(Input.CedulaRNC)).FirstOrDefault();
+                    UtilityModel.UserId = new Guid(user.Id.ToLower());
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

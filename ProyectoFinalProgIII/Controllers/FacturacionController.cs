@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalProgIII.Data;
+using ProyectoFinalProgIII.Models;
+using ProyectoFinalProgIII.VIewModels;
 
 namespace ProyectoFinalProgIII.Controllers
 {
+    [Authorize]
     public class FacturacionController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,7 +25,29 @@ namespace ProyectoFinalProgIII.Controllers
         // GET: Facturacion
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Facturacion.ToListAsync());
+            var result = (await _context.Facturacion.Where(f => f.UsuarioId == Models.UtilityModel.UserId).Select(s => new FacturaListVM
+            {
+                Cantidad = s.Cantidad,
+                FacturacionId = s.FacturacionId,
+                Itbis = s.Itbis,
+                NombreCliente = _context.Clientes.Where(c => c.ClienteId == s.ClienteId).FirstOrDefault().Nombre,
+                NombreProducto = _context.Productos.Where(c => c.ProductosId == s.ProductosId).FirstOrDefault().NombreP,
+                NombreServicio = _context.Servicios.Where(c => c.ServiciosId == s.ServiciosId).FirstOrDefault().NombreS,
+                NombreUsuario = _context.Usuarios.Where(c => c.Id.Equals(UtilityModel.UserId.ToString())).FirstOrDefault().Nombre,
+                TipoFactura = "Prueba"
+
+            }).ToListAsync());
+
+
+            //if (result.Count>0)
+            //{
+                return View(result);
+
+            //}
+            //else{
+            //    return View(new List<FacturaVM>());
+            //}
+
         }
 
         // GET: Facturacion/Details/5
@@ -45,7 +71,14 @@ namespace ProyectoFinalProgIII.Controllers
         // GET: Facturacion/Create
         public IActionResult Create()
         {
-            return View();
+            var result = new FacturaVM
+            {
+                Productos = _context.Productos.ToList(),
+                Clientes = _context.Clientes.ToList(),
+                Servicios = _context.Servicios.ToList(),
+                Facturacion = new Facturacion()
+            };
+            return View(result);
         }
 
         // POST: Facturacion/Create
@@ -58,6 +91,7 @@ namespace ProyectoFinalProgIII.Controllers
             if (ModelState.IsValid)
             {
                 facturacion.FacturacionId = Guid.NewGuid();
+                facturacion.UsuarioId = UtilityModel.UserId;
                 _context.Add(facturacion);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

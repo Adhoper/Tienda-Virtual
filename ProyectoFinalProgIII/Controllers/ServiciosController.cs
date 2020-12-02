@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoFinalProgIII.Data;
+using ProyectoFinalProgIII.Models;
 
 namespace ProyectoFinalProgIII.Controllers
 {
+    [Authorize]
     public class ServiciosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -58,6 +61,7 @@ namespace ProyectoFinalProgIII.Controllers
             if (ModelState.IsValid)
             {
                 servicios.ServiciosId = Guid.NewGuid();
+                servicios.UId = UtilityModel.UserId;
                 _context.Add(servicios);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

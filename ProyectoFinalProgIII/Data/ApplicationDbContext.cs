@@ -38,7 +38,6 @@ namespace ProyectoFinalProgIII.Data
 
     public class Usuarios : IdentityUser
     {
-
         public string CedulaRNC { get; set; }
 
         public string Nombre { get; set; }
@@ -55,6 +54,7 @@ namespace ProyectoFinalProgIII.Data
     {
         [Key]
         public Guid ClienteId { get; set; }
+        public Guid UId { get; set; }
         public string Nombre { get; set; }
         public string RNC { get; set; }
         public string Direccion { get; set; }
@@ -87,6 +87,7 @@ namespace ProyectoFinalProgIII.Data
     {
         public Guid ProductosId { get; set; }
 
+        public Guid UId { get; set; }
         public string NombreP { get; set; }
         public string Descripcion { get; set; }
         public string Valor { get; set; }
@@ -99,6 +100,8 @@ namespace ProyectoFinalProgIII.Data
     public class Servicios
     {
         public Guid ServiciosId { get; set; }
+
+        public Guid UId { get; set; }
 
         public string NombreS { get; set; }
         public string Descripcion { get; set; }

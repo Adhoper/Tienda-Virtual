@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProyectoFinalProgIII.Data.Facturacion>
+﻿@model IEnumerable<ProyectoFinalProgIII.VIewModels.FacturaListVM>
 @using Microsoft.AspNetCore.Identity
 @using ProyectoFinalProgIII.Data;
 @inject SignInManager<Usuarios> SignInManager
@@ -20,25 +20,32 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TipoFactura)
+                @*@Html.DisplayNameFor(model => model.TipoFactura)*@
+                Tipo de Factura
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cantidad)
+                @*@Html.DisplayNameFor(model => model.Cantidad)*@
+                Cantidad
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Itbis)
+                @*@Html.DisplayNameFor(model => model.Itbis)*@
+                ITBIS
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClienteId)
+                @*@Html.DisplayNameFor(model => model.ClienteId)*@
+                 Cliente
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UsuarioId)
+                @*@Html.DisplayNameFor(model => model.UsuarioId)*@
+                Usuario
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductosId)
+                @*@Html.DisplayNameFor(model => model.ProductosId)*@
+               Producto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ServiciosId)
+                @*@Html.DisplayNameFor(model => model.ServiciosId)*@
+                Servicio
             </th>
             <th></th>
         </tr>
@@ -57,16 +64,16 @@
                     @Html.DisplayFor(modelItem => item.Itbis)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ClienteId)
+                    @Html.DisplayFor(modelItem => item.NombreCliente)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UsuarioId)
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductosId)
+                    @Html.DisplayFor(modelItem => item.NombreProducto)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ServiciosId)
+                    @Html.DisplayFor(modelItem => item.NombreServicio)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.FacturacionId">Edit</a> |
