@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProyectoFinalProgIII.Data.Productos>
+@{
+    ViewData["Title"] = "ProdList";
+}
+
+<h1 class="text-center">Produtos Con su Existencia</h1><br />
+
+<a class="btn btn-primary" asp-controller="Productos" asp-action="Create">Crear nuevo producto</a><br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre del Producto
+            </th>
+            <th>
+                Existencia/Cantidad
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-warning" asp-controller="Productos" asp-action="Edit" asp-route-id="@item.ProductosId">Modificar</a>
+                        <a class="btn btn-secondary" asp-controller="Productos" asp-action="Details" asp-route-id="@item.ProductosId">Detalles</a>
+                        <a class="btn btn-danger" asp-controller="Productos" asp-action="Delete" asp-route-id="@item.ProductosId">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Atras</a><br />
+</div>

@@ -5,16 +5,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProyectoFinalProgIII.Data;
 
 namespace ProyectoFinalProgIII.Controllers
 {
     [Authorize]
     public class ReportesController : Controller
     {
+
+        private readonly ApplicationDbContext _context;
+
+        public ReportesController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         // GET: Reportes
         public ActionResult Index()
         {
             return View();
+        }
+
+        // GET: Reportes/ProdList
+        public ActionResult ProdList()
+        {
+            return View(_context.Productos);
         }
 
         // GET: Reportes/Details/5

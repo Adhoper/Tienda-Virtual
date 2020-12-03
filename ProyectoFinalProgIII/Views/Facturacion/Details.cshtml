@@ -1,60 +1,67 @@
-﻿@model ProyectoFinalProgIII.Data.Facturacion
+﻿@model IEnumerable<ProyectoFinalProgIII.VIewModels.FacturaListVM>
 
 @{
     ViewData["Title"] = "Details";
+
+
 }
 
 <h1>Details</h1>
 
-<div>
-    <h4>Facturacion</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoFactura)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoFactura)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cantidad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Itbis)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Itbis)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClienteId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClienteId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UsuarioId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UsuarioId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductosId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductosId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ServiciosId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ServiciosId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.FacturacionId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@foreach (var item in Model)
+{
+    <div>
+        <h4>Facturacion</h4>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TipoFactura)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.TipoFactura)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Cantidad)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Itbis)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.Itbis)
+            </dd>
+            <dt class="col-sm-2">
+                Cliente
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.NombreCliente)
+            </dd>
+            <dt class="col-sm-2">
+                Usuario
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.NombreUsuario)
+            </dd>
+            <dt class="col-sm-2">
+                Producto
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.NombreProducto)
+            </dd>
+            <dt class="col-sm-2">
+                Servicio
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.NombreServicio)
+            </dd>
+        </dl>
+
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@item.FacturacionId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}

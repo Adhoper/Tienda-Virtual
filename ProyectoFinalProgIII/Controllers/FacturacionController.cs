@@ -38,16 +38,40 @@ namespace ProyectoFinalProgIII.Controllers
 
             }).ToListAsync());
 
+            if (TempData["FacturaType"] == "Productos")
+            {
+                TempData["FacturaType"] = "Servicios";
+            }
+            else
+            {
+                TempData["FacturaType"] = "Productos";
+            }
 
             //if (result.Count>0)
             //{
-                return View(result);
+            return View(result);
 
             //}
             //else{
             //    return View(new List<FacturaVM>());
             //}
 
+        }
+
+        public IActionResult ChangeFacturaType([Bind("FacturacionId,TipoFactura,Cantidad,Itbis,ClienteId,UsuarioId,ProductosId,ServiciosId")] Facturacion facturacion)
+        {
+            
+
+            var result = new FacturaVM
+            {
+                Productos = _context.Productos.ToList(),
+                Clientes = _context.Clientes.ToList(),
+                Servicios = _context.Servicios.ToList(),
+                Facturacion = facturacion
+            };
+
+
+            return RedirectToAction("Create", result);
         }
 
         // GET: Facturacion/Details/5
@@ -58,8 +82,20 @@ namespace ProyectoFinalProgIII.Controllers
                 return NotFound();
             }
 
-            var facturacion = await _context.Facturacion
-                .FirstOrDefaultAsync(m => m.FacturacionId == id);
+
+            var facturacion = (await _context.Facturacion.Where(f => f.FacturacionId == id).Select(s => new FacturaListVM
+            {
+                Cantidad = s.Cantidad,
+                FacturacionId = s.FacturacionId,
+                Itbis = s.Itbis,
+                NombreCliente = _context.Clientes.Where(c => c.ClienteId == s.ClienteId).FirstOrDefault().Nombre,
+                NombreProducto = _context.Productos.Where(c => c.ProductosId == s.ProductosId).FirstOrDefault().NombreP,
+                NombreServicio = _context.Servicios.Where(c => c.ServiciosId == s.ServiciosId).FirstOrDefault().NombreS,
+                NombreUsuario = _context.Usuarios.Where(c => c.Id.Equals(UtilityModel.UserId.ToString())).FirstOrDefault().Nombre,
+                TipoFactura = s.TipoFactura
+
+            }).ToListAsync());
+
             if (facturacion == null)
             {
                 return NotFound();
@@ -69,15 +105,20 @@ namespace ProyectoFinalProgIII.Controllers
         }
 
         // GET: Facturacion/Create
-        public IActionResult Create()
+        public IActionResult Create(FacturaVM fvm)
         {
             var result = new FacturaVM
             {
                 Productos = _context.Productos.ToList(),
                 Clientes = _context.Clientes.ToList(),
                 Servicios = _context.Servicios.ToList(),
-                Facturacion = new Facturacion()
+                Facturacion = fvm.Facturacion,
             };
+            if(result.Facturacion == null)
+            {
+                result.Facturacion = new Facturacion();
+                result.Facturacion.TipoFactura = "Productos";
+            }
             return View(result);
         }
 
@@ -90,11 +131,22 @@ namespace ProyectoFinalProgIII.Controllers
         {
             if (ModelState.IsValid)
             {
-                    facturacion.FacturacionId = Guid.NewGuid();
+                var producto = _context.Productos.Where(p => p.ProductosId.Equals(facturacion.ProductosId)).FirstOrDefault();
+                if(int.Parse(producto.Cantidad) - int.Parse(facturacion.Cantidad) < 1)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                facturacion.FacturacionId = Guid.NewGuid();
                     facturacion.UsuarioId = UtilityModel.UserId;
                     _context.Add(facturacion);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+
+                producto.Cantidad = (int.Parse(producto.Cantidad) - int.Parse(facturacion.Cantidad)).ToString();
+                _context.Productos.Update(producto);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
     
             }
             return View(facturacion);
@@ -177,6 +229,12 @@ namespace ProyectoFinalProgIII.Controllers
             var facturacion = await _context.Facturacion.FindAsync(id);
             _context.Facturacion.Remove(facturacion);
             await _context.SaveChangesAsync();
+
+            var producto = _context.Productos.Where(p => p.ProductosId.Equals(facturacion.ProductosId)).FirstOrDefault();
+            producto.Cantidad = (int.Parse(producto.Cantidad)+int.Parse(facturacion.Cantidad)).ToString();
+            _context.Productos.Update(producto);
+            _context.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 

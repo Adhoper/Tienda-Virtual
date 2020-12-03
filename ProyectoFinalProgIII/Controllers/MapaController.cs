@@ -21,7 +21,6 @@ namespace ProyectoFinalProgIII.Controllers
         public IActionResult Index()
         {
 
-
             return View(_context.Clientes);
         }
     }

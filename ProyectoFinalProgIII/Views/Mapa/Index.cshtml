@@ -20,7 +20,9 @@
     <div class="text-center">
         <h1>Bienvenido al Mapa</h1>
         <p>Este mapa muestra la direccion e informacion de todos los Clientes Registrados</p>
+        <a class="btn btn-outline-secondary" style="float:right" asp-controller="Reportes" asp-action="Index">Volver</a>
     </div>
+
 
 <!DOCTYPE html>
 <html>
@@ -56,7 +58,7 @@
         var datosAcc = @Html.Raw(cli);
 
         for (let a of datosAcc) {
-            
+
 
 
             var marker = L.marker([a.Latitud, a.Longitud]).addTo(map).bindPopup('<strong>Nombre: </strong>' + a.Nombre + '<br><strong>RNC/Cedula: </strong>' + a.RNC + '<br><strong>Direccion:</strong> ' + a.Direccion +
@@ -68,9 +70,8 @@
 
 
     </script>
-    <center>
-        <input style="margin-top:10px;" type="button" class="btn btn-warning" onclick="location.href ='/'" value="Volver" />
-    </center>
 </body>
-</html>
+
+
+
 
