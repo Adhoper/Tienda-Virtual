@@ -34,7 +34,7 @@ namespace ProyectoFinalProgIII.Controllers
                 NombreProducto = _context.Productos.Where(c => c.ProductosId == s.ProductosId).FirstOrDefault().NombreP,
                 NombreServicio = _context.Servicios.Where(c => c.ServiciosId == s.ServiciosId).FirstOrDefault().NombreS,
                 NombreUsuario = _context.Usuarios.Where(c => c.Id.Equals(UtilityModel.UserId.ToString())).FirstOrDefault().Nombre,
-                TipoFactura = "Prueba"
+                TipoFactura = s.TipoFactura
 
             }).ToListAsync());
 

@@ -10,7 +10,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <h1>Index</h1>
+ 
     <h1 class="text-center">Productos</h1>
 
     <p>
@@ -51,9 +51,11 @@
                         @Html.DisplayFor(modelItem => item.Cantidad)
                     </td>
                     <td>
-                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ProductosId">Editar</a> |
-                        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.ProductosId">Detalles</a> |
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductosId">Eliminar</a>
+                        <div class="btn-group">
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ProductosId">Editar</a> 
+                            <a class="btn btn-success" asp-action="Details" asp-route-id="@item.ProductosId">Detalles</a> 
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProductosId">Eliminar</a>
+                        </div>
                     </td>
                 </tr>
             }

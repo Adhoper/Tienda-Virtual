@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoFinalProgIII.Data;
 using ProyectoFinalProgIII.VIewModels;
 
 namespace ProyectoFinalProgIII.Controllers
 {
+    [Authorize]
     public class MapaController : Controller
     {
         private readonly ApplicationDbContext _context;

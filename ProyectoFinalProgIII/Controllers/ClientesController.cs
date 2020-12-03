@@ -55,7 +55,7 @@ namespace ProyectoFinalProgIII.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClienteId,Nombre,RNC,Direccion,Latitud,Longitud,Telefono,Correo")] Clientes clientes)
+        public async Task<IActionResult> Create([Bind("ClienteId,Nombre,RNC,Direccion,Latitud,Longitud,Telefono,Correo,FechaNacimiento")] Clientes clientes)
         {
             if (ModelState.IsValid)
             {
