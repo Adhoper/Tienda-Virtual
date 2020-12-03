@@ -32,6 +32,12 @@ namespace ProyectoFinalProgIII.Controllers
             return View(_context.Productos);
         }
 
+        // GET: Reportes/ListVendidos
+        public ActionResult ListVendidos()
+        {
+            return View(_context.Productos);
+        }
+
         // GET: Reportes/Details/5
         public ActionResult Details(int id)
         {

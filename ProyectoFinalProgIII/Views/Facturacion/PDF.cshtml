@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProyectoFinalProgIII.VIewModels.FacturaListVM>
+
+@{
+    ViewData["Title"] = "PDF";
+    Layout = null;
+
+    DateTime tiempo = DateTime.Today;
+}
+
+<h1 class="text-center">Detalles</h1>
+<label style="float:right;font-size:20px;">@tiempo.ToString("dd/MM/yyyy")</label>
+
+<h3>Facturacion</h3>
+<hr />
+
+@foreach (var item in Model)
+{
+    <div style="font-size:26px;">
+
+        <br />
+
+        <strong>@Html.DisplayNameFor(model => model.TipoFactura):</strong> @Html.DisplayFor(modelItem => item.TipoFactura)<br /><br />
+
+
+        <strong>@Html.DisplayNameFor(model => model.Cantidad):</strong> @Html.DisplayFor(model => item.Cantidad)<br /><br />
+
+        <strong>@Html.DisplayNameFor(model => model.Itbis):</strong> @Html.DisplayFor(model => item.Itbis)<br /><br />
+
+        <strong>Cliente:</strong>  @Html.DisplayFor(model => item.NombreCliente)<br /><br />
+
+        <strong>Usuario:</strong>  @Html.DisplayFor(model => item.NombreUsuario)<br /><br />
+
+        <strong>Producto:</strong> @Html.DisplayFor(model => item.NombreProducto)<br /><br />
+
+        <strong>Servicio:</strong> @Html.DisplayFor(model => item.NombreServicio)<br />
+
+    </div>
+
+}
